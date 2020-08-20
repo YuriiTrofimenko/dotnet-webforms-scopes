@@ -16,6 +16,9 @@
         <div>
             <asp:Button ID="send" runat="server" Text="SendData"  OnClick="send_Click" />
         </div>
+        <div>
+            <span><%= visits %></span>
+        </div>
     </form>
 </body>
 </html>
