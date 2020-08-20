@@ -12,9 +12,15 @@ public partial class Counter : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         // Request Scope
-        String countString = Request.QueryString["count"];
+        /* String countString = Request.QueryString["count"];
         if (countString != null) {
             count = Int32.Parse(countString);
+        } */
+
+        Object countInt = this.Session["count"];
+        if (countInt != null)
+        {
+            count = (int)countInt;
         }
     }
 
@@ -31,8 +37,12 @@ public partial class Counter : System.Web.UI.Page
         this.ViewState["count"] = count; */
 
         // Request Scope
+        /* count++;
+        Response.Redirect($"Counter.aspx?sender={this.GetType().Name}&count={count}"); */
+
+        // Session Scope
         count++;
-        Response.Redirect($"Counter.aspx?sender={this.GetType().Name}&count={count}");
+        this.Session["count"] = count;
     }
 
     protected void send_Click(object sender, EventArgs e)
